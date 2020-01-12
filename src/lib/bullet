@@ -1,0 +1,35 @@
+#!/bin/bash
+
+bullet_pos_x=$(($current_pos_x+1))
+bullet_pos_y=$(($ROWS-2))
+
+is_bullet=1
+
+function reset_bullet() {
+    bullet_pos_x=$(($current_pos_x+1))
+    bullet_pos_y=$(($ROWS-2))
+}
+
+function shoot() {
+    is_bullet=0
+}
+
+function draw_bullet() {
+    if [ $is_bullet -eq 0 ]; then
+        set_position $bullet_pos_y $bullet_pos_x
+        echo -ne " "
+        set_position $(($bullet_pos_y-1)) $bullet_pos_x
+        echo -ne "|"
+        if [ $bullet_pos_y == 2 ]; then
+            is_bullet=1
+            set_position $(($bullet_pos_y-1)) $bullet_pos_x
+            echo -ne " "
+            reset_bullet
+        fi
+        cursor_home
+        ((bullet_pos_y-=1))
+    fi
+
+}
+
+

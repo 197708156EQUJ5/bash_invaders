@@ -1,0 +1,57 @@
+#!/bin/bash
+
+function hide_cursor() {
+    tput civis
+}
+
+function show_cursor() {
+    tput cnorm
+}
+
+function erase_to_end() {
+    echo -en "\033[K"
+}
+
+function UP() {
+    echo -en "\033[${1}A"
+}
+
+function DOWN() {
+    echo -en "\033[${1}B"
+}
+
+function BACK() {
+    echo -en "\033[${1}D"
+}
+
+function FORWARD() {
+    echo -en "\033[${1}C"
+}
+
+function string() {
+    if [ "${1}" == "*" ]; then
+        echo -en "\033[1;35m\u25CF"
+    else
+        echo -en ""
+    fi
+
+}
+
+function get_coord() {
+    local __return1=$1
+    local __return2=$2
+    local rand=$(( RANDOM % 30 ))
+    eval $__return1="'$rand'"
+    local rand=$(( RANDOM % 30 ))
+    eval $__return2="'$rand'"
+}
+
+function set_position() {
+    echo -ne "\033[${1};${2}H"
+}
+
+function cursor_home() {
+    #set_position 30 0
+    set_position $ROWS 0
+}
+

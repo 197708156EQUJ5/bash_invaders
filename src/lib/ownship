@@ -1,0 +1,36 @@
+#!/bin/bash
+
+current_pos_x=$(($COLS/2))
+current_pos_y=$(($ROWS))
+
+function update_pos() {
+    echo $current_pos_x","$current_pos_y
+}
+
+function draw_ownship() {
+    set_position $(($current_pos_y-1)) $current_pos_x 
+    echo -ne "/-\\"
+    cursor_home
+}
+
+function clear_ownship() {
+    set_position $(($current_pos_y-1)) $current_pos_x 
+    echo -ne "   "
+    cursor_home
+}
+
+function move_right() {
+    clear_ownship
+    if [ $current_pos_x -lt $(($COLS-3)) ]; then
+        ((current_pos_x+=1))
+    fi
+    draw_ownship
+}
+
+function move_left() {
+    clear_ownship
+    if [ $current_pos_x -gt 0 ]; then
+        ((current_pos_x-=1))
+    fi
+    draw_ownship
+}

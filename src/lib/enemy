@@ -1,0 +1,16 @@
+#!/bin/bash
+
+current_enemy_pos_x=2
+current_enemy_pos_y=2
+
+function create_enemy() {
+    current_enemy_pos_x=$1
+    current_enemy_pos_y=$2
+    draw_enemy
+}
+
+function draw_enemy() {
+    set_position $current_enemy_pos_y $current_enemy_pos_x
+    echo -ne "@"
+    cursor_home
+}

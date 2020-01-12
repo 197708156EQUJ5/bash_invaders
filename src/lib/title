@@ -1,0 +1,49 @@
+#!/bin/bash
+
+COLS=`tput cols`
+ROWS=`tput lines`
+
+function show_title() {
+    UP $(($ROWS/2))
+    set_color "GREEN"
+    FORWARD 35
+    echo "Welcome to"
+    FORWARD 36
+    echo "INVADERS"
+    echo
+    echo
+    echo
+    FORWARD 20
+    echo "s) Start"
+    FORWARD 20
+    echo "q) Quit"
+    echo
+    FORWARD 20
+    echo "Game Play:"
+    echo
+    FORWARD 20
+    echo "a) move left"
+    FORWARD 20
+    echo "d) move right"
+    FORWARD 20
+    echo "p) fire"
+    read -n 1 key
+    if [[ $key = q ]]; then
+        goodbye
+        exit
+    elif [[ $key = s ]]; then
+        echo
+    fi
+    set_color "DEFAULT"
+}
+
+function goodbye() {
+    clear_screen
+    UP $(($ROWS/2))
+    set_color "GREEN"
+    FORWARD $(($COLS/2-5))
+    echo "Goodbye"
+    DOWN $(($ROWS/2))
+    show_cursor
+}
+

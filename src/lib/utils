@@ -1,0 +1,50 @@
+#!/bin/bash
+
+function set_color() {
+    local color=$1
+    local style=$2
+    if [ "$color" == "GREEN" ]; then
+        echo -ne "\e[32m"
+    elif [ "$color" == "DEFAULT" ]; then
+        echo -ne "\e[0m"
+    fi
+    if [ "$style" == "BOLD" ]; then
+        echo -ne "\e[1m"
+    fi
+}
+
+function clear_screen() {
+    for i in $(seq 2 $ROWS)
+    do
+        set_position $i 0
+        erase_to_end
+    done
+}
+
+function update_score() {
+    set_position 0 0
+    FORWARD $(($COLS/4))
+    echo -ne "SCORE"
+    set_color "GREEN" "BOLD"
+    echo -ne " $SCORE"
+    set_color "DEFAULT"
+    FORWARD $(($COLS/4)) 
+    echo -ne "HIGH"
+    set_color "GREEN" "BOLD"
+    echo -ne " $HIGH"
+    set_color "DEFAULT"
+    FORWARD $(($COLS/4))
+    echo -ne "LIVES"
+    set_color "GREEN" "BOLD"
+    echo -ne " $LIVES"
+    set_color "DEFAULT"
+    set_color "GREEN" "BOLD"
+}
+
+function init_screen() {
+    for i in $(seq 2 $ROWS)
+    do
+        echo
+    done
+}
+
