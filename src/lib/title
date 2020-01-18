@@ -1,4 +1,6 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: title
 
 COLS=`tput cols`
 ROWS=`tput lines`
@@ -47,3 +49,4 @@ function goodbye() {
     show_cursor
 }
 
+## END title

@@ -1,19 +1,31 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: bullet
 
 bullet_pos_x=$(($current_pos_x+1))
 bullet_pos_y=$(($ROWS-2))
 
 is_bullet=1
 
+
+##
+## @name: reset_bullet()
+## @desc: place the bullet back to the center
 function reset_bullet() {
     bullet_pos_x=$(($current_pos_x+1))
     bullet_pos_y=$(($ROWS-2))
 }
 
+##
+## @name: shoot()
+## @desc: checks if there is a bullet
 function shoot() {
     is_bullet=0
 }
 
+##
+## @name: draw_bullet()
+## @desc: draws the bullet on the screen
 function draw_bullet() {
     if [ $is_bullet -eq 0 ]; then
         set_position $bullet_pos_y $bullet_pos_x
@@ -32,4 +44,4 @@ function draw_bullet() {
 
 }
 
-
+## END: bullet

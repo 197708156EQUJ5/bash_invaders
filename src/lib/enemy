@@ -1,4 +1,6 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: enemy
 
 current_enemy_pos_x=2
 current_enemy_pos_y=2
@@ -14,3 +16,23 @@ function draw_enemy() {
     echo -ne "@"
     cursor_home
 }
+
+function clear_enemy() {
+    set_position $(($current_enemy_pos_y-2)) $current_enemy_pos_x 
+    echo -ne " "
+    cursor_home
+}
+
+##
+## @name: move_enemy_right()
+## @desc: moves the enemy to the right
+function move_enemy_right() {
+    clear_enemy
+    info="${current_enemy_pos_y} ${current_enemy_pos_x}"
+    ((current_enemy_pos_x+=1))
+
+    debug "$info"
+    draw_enemy
+}
+
+## END enemy

@@ -1,4 +1,6 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: cursor_move
 
 function hide_cursor() {
     tput civis
@@ -55,3 +57,4 @@ function cursor_home() {
     set_position $ROWS 0
 }
 
+## END cursor_move

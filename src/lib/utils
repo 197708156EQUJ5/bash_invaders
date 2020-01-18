@@ -1,4 +1,6 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: utils
 
 function set_color() {
     local color=$1
@@ -48,3 +50,10 @@ function init_screen() {
     done
 }
 
+function debug() {
+    local info=$1
+    the_date=$(date +'%Y%m%d:%H%M%S')
+    echo "[$the_date] $info" >> ~/temp/bhinv-debug
+}
+
+## END utils

@@ -1,4 +1,6 @@
 #!/bin/bash
+## ----------------------------------------------
+## @File: ownship
 
 current_pos_x=$(($COLS/2))
 current_pos_y=$(($ROWS))
@@ -34,3 +36,5 @@ function move_left() {
     fi
     draw_ownship
 }
+
+## END ownship
